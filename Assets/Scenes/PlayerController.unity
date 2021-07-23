@@ -433,7 +433,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1230663945}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 689b8da1f285eb44fb842f405ea99e15, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -589,9 +589,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f42ac6a436a38468502ffe15208982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveAcceleration: 0.01
-  moveSpeedMax: 1
-  jumpHeight: 10
+  moveAcceleration: 0.5
+  moveSpeedMax: 7
+  arialControl: 0.5
+  drag: 0.2
+  jumpHeight: 8
+  footDepth: 0.6
 --- !u!50 &1581098775
 Rigidbody2D:
   serializedVersion: 4
@@ -611,7 +614,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!4 &1581098777
 Transform:
