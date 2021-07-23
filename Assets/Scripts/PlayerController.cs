@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour
     {
         CastFeet();
         CharacterPrimaryControl();
-
     }
 
     private void CastFeet()
@@ -44,11 +43,21 @@ public class PlayerController : MonoBehaviour
 
     private void CharacterPrimaryControl()
     {
-        float move = Input.GetAxis("Horizontal");
+        float move = Input.GetAxisRaw("Horizontal");
         bool jump = Input.GetKeyDown(KeyCode.Space);
         float modSpeed = 1f;
         if (!onGround) modSpeed = arialControl;
-        if ((move > 0f && rb.velocity.x < moveSpeedMax) || (move < 0f && rb.velocity.x > -moveSpeedMax)) rb.velocity += new Vector2(move * modSpeed * moveAcceleration, 0f);
+        if ((move > 0f && rb.velocity.x < moveSpeedMax) || (move < 0f && rb.velocity.x > -moveSpeedMax))
+        {
+            float maxDiff = moveSpeedMax - Mathf.Abs(rb.velocity.x);
+            float adjustVel = move * modSpeed * moveAcceleration;
+            if (maxDiff > 0f)
+            {
+                if (adjustVel > maxDiff) adjustVel = maxDiff;
+                if (adjustVel < -maxDiff) adjustVel = -maxDiff;
+            }
+            rb.velocity += new Vector2(adjustVel, 0f);
+        }
         else if (onGround) rb.velocity *= new Vector2(drag, 1f);
         if (onGround && jump) rb.velocity += new Vector2(0f, 1f) * jumpHeight;
     }
