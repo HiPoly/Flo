@@ -20,8 +20,11 @@ public class PlayerController : MonoBehaviour
     private PlayerInteraction interaction;
     private bool onGround;
     private bool moving;
+    bool wasGrounded;
+    bool wasMoving;
     private RaycastHit2D footRay;
-
+    Animator animator;
+    SpriteRenderer sprite;
     private float moveInput;
 
     public bool isPlayerControlling = true;
@@ -31,12 +34,16 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         interaction = GetComponent<PlayerInteraction>();
+        animator = GetComponentInChildren<Animator>();
+        sprite = GetComponentInChildren<SpriteRenderer>();
         onGround = false;
         moveInput = 0f;
         moving = false;
+        wasMoving = false;
         USBModule = false;
         JackLauncherModule = false;
         redToothModule = false;
+        wasGrounded = false;
     }
 
     // Update is called once per frame
@@ -70,6 +77,15 @@ public class PlayerController : MonoBehaviour
             footRay = hit;
         }
         else onGround = false;
+        if(onGround == true && wasGrounded == false)
+        {
+            animator.SetBool("Grounded", true);
+        }
+        if (onGround == false && wasGrounded == true)
+        {
+            animator.SetBool("Grounded", false);
+        }
+        wasGrounded = onGround;
     }
 
     private void CharacterPrimaryControl()
@@ -91,7 +107,24 @@ public class PlayerController : MonoBehaviour
             moveInput = adjustVel;
         }
         else moveInput = 0f;
-        if (onGround && jump) rb.velocity += new Vector2(0f, 1f) * jumpHeight;
+
+        animator.SetFloat("MoveInput", Mathf.Abs(move));
+
+        if (onGround && jump)
+        {
+            rb.velocity += new Vector2(0f, 1f) * jumpHeight;
+            animator.SetBool("Grounded", false);
+        }
+        wasMoving = moving;
+
+        if (move == -1)
+        {
+            sprite.flipX = true;
+        }
+        if (move == 1)
+        {
+            sprite.flipX = false;
+        }
     }
 
     public void ActivateControl()
