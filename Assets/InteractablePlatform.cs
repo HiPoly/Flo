@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InteractablePlatform : MonoBehaviour
 {
-    public PlayerController player;
+    PlayerController player;
     public bool isPlayerControlling = false;
     public bool horizontalMovment = false;
     public bool verticalMovement = false;
@@ -14,7 +14,7 @@ public class InteractablePlatform : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = FindObjectOfType<PlayerController>();
     }
 
     // Update is called once per frame
