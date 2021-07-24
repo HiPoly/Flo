@@ -14,13 +14,18 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     private bool onGround;
+    private bool moving;
     private RaycastHit2D footRay;
+
+    private float moveInput;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         onGround = false;
+        moveInput = 0f;
+        moving = false;
     }
 
     // Update is called once per frame
@@ -28,6 +33,17 @@ public class PlayerController : MonoBehaviour
     {
         CastFeet();
         CharacterPrimaryControl();
+    }
+
+    private void FixedUpdate()
+    {
+        ApplySideMovement();
+    }
+
+    private void ApplySideMovement()
+    {
+        rb.velocity += new Vector2(moveInput, 0f);
+        if (onGround && moveInput == 0f && !moving) rb.velocity *= new Vector2(drag, 1f);
     }
 
     private void CastFeet()
@@ -46,19 +62,20 @@ public class PlayerController : MonoBehaviour
         float move = Input.GetAxisRaw("Horizontal");
         bool jump = Input.GetKeyDown(KeyCode.Space);
         float modSpeed = 1f;
+        moving = (move != 0f);
         if (!onGround) modSpeed = arialControl;
         if ((move > 0f && rb.velocity.x < moveSpeedMax) || (move < 0f && rb.velocity.x > -moveSpeedMax))
         {
-            float maxDiff = moveSpeedMax - Mathf.Abs(rb.velocity.x);
             float adjustVel = move * modSpeed * moveAcceleration;
+            float maxDiff = moveSpeedMax - Mathf.Abs(rb.velocity.x) + Mathf.Abs(adjustVel);
             if (maxDiff > 0f)
             {
                 if (adjustVel > maxDiff) adjustVel = maxDiff;
                 if (adjustVel < -maxDiff) adjustVel = -maxDiff;
             }
-            rb.velocity += new Vector2(adjustVel, 0f);
+            moveInput = adjustVel;
         }
-        else if (onGround) rb.velocity *= new Vector2(drag, 1f);
+        else moveInput = 0f;
         if (onGround && jump) rb.velocity += new Vector2(0f, 1f) * jumpHeight;
     }
 }
