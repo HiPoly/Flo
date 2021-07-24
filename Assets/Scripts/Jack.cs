@@ -9,11 +9,15 @@ public class Jack : MonoBehaviour
     public float drag;
     public Vector2 velocity { get; set; }
     public JackLauncher launcher { get; set; }
-    public JackAttach attached;
+    public JackAttach attached { get; set; }
+    public Transform cordAttach;
+
+    public LineRenderer cord { get; set; }
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        cord = GetComponentInChildren<LineRenderer>();
     }
 
     // Update is called once per frame
@@ -22,9 +26,18 @@ public class Jack : MonoBehaviour
         if (!attached)
         {
             RayCheck();
-            Move();
-            AddForces();
+            if (!attached)
+            {
+                Move();
+                AddForces();
+                SetRotation();
+            }
         }
+    }
+
+    private void SetRotation()
+    {
+        transform.LookAt(transform.position + new Vector3(velocity.x, velocity.y, 0f));
     }
 
     private void RayCheck()
@@ -44,6 +57,7 @@ public class Jack : MonoBehaviour
     {
         attached = jackAttach;
         transform.position = jackAttach.attachPoint.position;
+        transform.position += new Vector3(0f, 0f, 0.03f);
         transform.rotation = jackAttach.attachPoint.rotation;
     }
 
@@ -67,6 +81,6 @@ public class Jack : MonoBehaviour
 
     private void Move()
     {
-        transform.Translate(velocity.x * Time.deltaTime, velocity.y * Time.deltaTime, 0f);
+        transform.Translate(velocity.x * Time.deltaTime, velocity.y * Time.deltaTime, 0f, Space.World);
     }
 }
