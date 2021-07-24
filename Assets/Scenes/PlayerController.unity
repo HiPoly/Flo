@@ -828,6 +828,7 @@ MonoBehaviour:
   USBModule: 0
   JackLauncherModule: 0
   redToothModule: 0
+  isPlayerControlling: 1
 --- !u!50 &1581098775
 Rigidbody2D:
   serializedVersion: 4
@@ -861,7 +862,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20f141bc0903e924badba318d508bc41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLength: 20
+  maxLength: 30
   jackOb: {fileID: 2278755795011168906, guid: 27ac57cdc03d3c74ea3a8c23f1efe6cf, type: 3}
   power: 35
   debug: {fileID: 1730616907}
@@ -1002,9 +1003,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b58a51d3d26372d4ea1ce1287c6a6ee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   isPlayerControlling: 0
   horizontalMovment: 1
   verticalMovement: 0
+  isPlayerOnPlatform: 0
   speed: 8
 --- !u!1 &1730616907
 GameObject:

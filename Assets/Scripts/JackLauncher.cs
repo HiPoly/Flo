@@ -12,8 +12,6 @@ public class JackLauncher : MonoBehaviour
     public GameObject debug;
     public Jack deployedJack { get; set; }
 
-    public JackAttach attached { get; set; }
-
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +29,11 @@ public class JackLauncher : MonoBehaviour
 
     private void maintainJack()
     {
+        if (deployedJack.cord != null)
+        {
+            Vector3[] positions = { deployedJack.cordAttach.position, transform.position };
+            deployedJack.cord.SetPositions(positions);
+        }
         if ((deployedJack.transform.position - transform.position).magnitude > maxLength) deployedJack.MissedTargets();
     }
 
