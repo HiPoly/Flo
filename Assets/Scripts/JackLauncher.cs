@@ -33,7 +33,21 @@ public class JackLauncher : MonoBehaviour
             Vector3[] positions = { deployedJack.cordAttach.position, transform.position };
             deployedJack.cord.SetPositions(positions);
         }
+        if (deployedJack.attached)
+        {
+            RestrictPlayerMovement();
+        }
         if ((deployedJack.transform.position - transform.position).magnitude > maxLength) deployedJack.MissedTargets();
+    }
+
+    private void RestrictPlayerMovement()
+    {
+        Vector3 cordVec = deployedJack.attached.attachPoint.position - transform.position;
+        if (cordVec.magnitude > restrainedLength)
+        {
+            float amount = cordVec.magnitude - restrainedLength;
+            GetComponent<Rigidbody2D>().velocity += (Vector2)cordVec * amount;
+        }
     }
 
     private void PrimaryJackControls()
