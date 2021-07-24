@@ -560,13 +560,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 968128627}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1852957898}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1230663945
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,9 +863,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxLength: 30
-  jackOb: {fileID: 2278755795011168906, guid: 27ac57cdc03d3c74ea3a8c23f1efe6cf, type: 3}
+  jackOb: {fileID: 5878530457991550390, guid: 27ac57cdc03d3c74ea3a8c23f1efe6cf, type: 3}
   power: 35
-  debug: {fileID: 1730616907}
 --- !u!4 &1581098777
 Transform:
   m_ObjectHideFlags: 0
@@ -1003,7 +1002,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b58a51d3d26372d4ea1ce1287c6a6ee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   isPlayerControlling: 0
   horizontalMovment: 1
   verticalMovement: 0
@@ -1235,7 +1233,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 98.3
+  field of view: 100
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1463,7 +1461,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 1581098777}
   m_Lens:
-    FieldOfView: 98.3
+    FieldOfView: 100
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
