@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class InteractablePlatform : MonoBehaviour
 {
-
+    public PlayerController player;
     public bool isPlayerControlling = false;
     public bool horizontalMovment = false;
     public bool verticalMovement = false;
+    public bool isPlayerOnPlatform = false;
     public float speed = 1.0f;
 
     // Start is called before the first frame update
@@ -35,7 +36,8 @@ public class InteractablePlatform : MonoBehaviour
 
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+
+/*    void OnCollisionEnter2D(Collision2D col)
     {
         if (col.transform.CompareTag("Player"))
         {
@@ -49,6 +51,22 @@ public class InteractablePlatform : MonoBehaviour
         {
             isPlayerControlling = false;
         }
+    }
+    */ 
+
+
+    public void ActivatePlatform()
+    {
+        isPlayerControlling = true;
+        if (isPlayerOnPlatform)
+        {
+            player.transform.parent = gameObject.transform;
+        }
+    }
+    
+    public void DeactivatePlatform()
+    {
+        isPlayerControlling = false;
     }
 
 }

@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
 
     private float moveInput;
 
+    public bool isPlayerControlling = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +43,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         CastFeet();
-        CharacterPrimaryControl();
+        
+        if (isPlayerControlling)
+        {
+            CharacterPrimaryControl();
+        }
     }
 
     private void FixedUpdate()
@@ -86,5 +92,15 @@ public class PlayerController : MonoBehaviour
         }
         else moveInput = 0f;
         if (onGround && jump) rb.velocity += new Vector2(0f, 1f) * jumpHeight;
+    }
+
+    public void ActivateControl()
+    {
+        isPlayerControlling = true;
+    }
+    
+    public void DectivateControl()
+    {
+        isPlayerControlling = false;
     }
 }
