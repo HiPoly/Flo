@@ -819,11 +819,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0f42ac6a436a38468502ffe15208982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveAcceleration: 1
+  moveAcceleration: 2
   moveSpeedMax: 10
   arialControl: 0.6
   drag: 0.2
-  jumpHeight: 20
+  jumpHeight: 27
   footDepth: 0.6
   USBModule: 0
   JackLauncherModule: 0
@@ -1422,7 +1422,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.51
 --- !u!1 &2079330014
 GameObject:
   m_ObjectHideFlags: 0

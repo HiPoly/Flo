@@ -9,6 +9,7 @@ public class JackLauncher : MonoBehaviour
     public Jack jackOb;
     public float power;
     public Jack deployedJack { get; set; }
+    public float restrainedLength { get; set; }
 
     // Start is called before the first frame update
     void Start()
