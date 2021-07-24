@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerState : MonoBehaviour
 {
+    public bool canMovePlatforms = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +16,10 @@ public class PlayerState : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void ActivateCanMovePlatform()
+    {
+        canMovePlatforms = true;
     }
 }

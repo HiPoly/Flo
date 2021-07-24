@@ -43,8 +43,12 @@ public class Interactable : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.transform.CompareTag("Player"))
-         {
-            isPlayerTouchingInteractable = true;
+        {
+            if (collider.GetComponentInParent<PlayerState>().canMovePlatforms)
+            {
+
+                isPlayerTouchingInteractable = true;
+            }
         }
     }
     
