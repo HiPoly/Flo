@@ -59,6 +59,7 @@ public class Jack : MonoBehaviour
         transform.position = jackAttach.attachPoint.position;
         transform.position += new Vector3(0f, 0f, 0.03f);
         transform.rotation = jackAttach.attachPoint.rotation;
+        launcher.restrainedLength = (transform.position - jackAttach.attachPoint.position).magnitude;
     }
 
     public void MissedTargets()
