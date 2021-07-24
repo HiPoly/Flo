@@ -59,7 +59,14 @@ public class Jack : MonoBehaviour
         transform.position = jackAttach.attachPoint.position;
         transform.position += new Vector3(0f, 0f, 0.03f);
         transform.rotation = jackAttach.attachPoint.rotation;
-        launcher.restrainedLength = (transform.position - jackAttach.attachPoint.position).magnitude;
+        launcher.restrainedLength = (launcher.transform.position - jackAttach.attachPoint.position).magnitude;
+    }
+
+    public void DetachJack()
+    {
+        launcher.deployedJack = null;
+        attached = null;
+        Destroy(this.gameObject, 0f);
     }
 
     public void MissedTargets()

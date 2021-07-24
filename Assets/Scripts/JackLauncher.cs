@@ -46,15 +46,22 @@ public class JackLauncher : MonoBehaviour
         if (cordVec.magnitude > restrainedLength)
         {
             float amount = cordVec.magnitude - restrainedLength;
-            GetComponent<Rigidbody2D>().velocity += (Vector2)cordVec * amount;
+            GetComponent<Rigidbody2D>().velocity += (Vector2)cordVec * amount * Time.deltaTime;
         }
     }
 
     private void PrimaryJackControls()
     {
-        if (!deployedJack && Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            LaunchJack();
+            if (deployedJack)
+            {
+                deployedJack.DetachJack();
+            }
+            else
+            {
+                LaunchJack();
+            }
         }
     }
 
