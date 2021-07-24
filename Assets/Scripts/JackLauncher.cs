@@ -8,8 +8,6 @@ public class JackLauncher : MonoBehaviour
     public float maxLength;
     public Jack jackOb;
     public float power;
-
-    public GameObject debug;
     public Jack deployedJack { get; set; }
 
     // Start is called before the first frame update
@@ -47,11 +45,8 @@ public class JackLauncher : MonoBehaviour
 
     private void LaunchJack()
     {
-        float aspect = (float)Screen.width / (float)Screen.height;
-        Vector2 mousePos = new Vector2((Input.mousePosition.x / Screen.width - 0.5f) * (Camera.main.orthographicSize * aspect * 2f) + Camera.main.transform.position.x,
-            (Input.mousePosition.y / Screen.height - 0.5f) * (Camera.main.orthographicSize * 2f) + Camera.main.transform.position.y);
-        Vector2 charPos = new Vector2(transform.position.x, transform.position.y);
-        Vector2 launchVector = (new Vector2(mousePos.x, mousePos.y) - charPos).normalized;
+        Vector2 charPos = Camera.main.WorldToScreenPoint(transform.position);
+        Vector2 launchVector = ((Vector2)Input.mousePosition - charPos).normalized;
         Jack jack = Instantiate(jackOb, transform.position, transform.rotation);
         jack.assignVelocity((launchVector * power) + (Vector2)GetComponentInParent<Rigidbody2D>().velocity);
         jack.launcher = this;
