@@ -12,7 +12,12 @@ public class PlayerController : MonoBehaviour
     public float jumpHeight;
     public float footDepth;
 
+    public bool USBModule;
+    public bool JackLauncherModule;
+    public bool redToothModule;
+
     private Rigidbody2D rb;
+    private PlayerInteraction interaction;
     private bool onGround;
     private bool moving;
     private RaycastHit2D footRay;
@@ -23,9 +28,13 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        interaction = GetComponent<PlayerInteraction>();
         onGround = false;
         moveInput = 0f;
         moving = false;
+        USBModule = false;
+        JackLauncherModule = false;
+        redToothModule = false;
     }
 
     // Update is called once per frame
