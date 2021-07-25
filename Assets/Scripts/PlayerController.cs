@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public bool JackLauncherModule;
     public bool redToothModule;
 
+    public AudioSource speaker { get; set; }
     private Rigidbody2D rb;
     private bool onGround;
     private bool moving;
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        speaker = GetComponent<AudioSource>();
         animator = GetComponentInChildren<Animator>();
         sprite = GetComponentInChildren<SpriteRenderer>();
         onGround = false;
@@ -57,8 +59,17 @@ public class PlayerController : MonoBehaviour
         {
             CharacterPrimaryControl();
         }
-        if (onGround) coyoteTimer = coyoteFrames;
+        if (onGround)
+        {
+            if (coyoteTimer == 0 && rb.velocity.y < 0f) GroundImpact();
+            coyoteTimer = coyoteFrames;
+        }
         else if (coyoteTimer != 0) coyoteTimer--;
+    }
+
+    private void GroundImpact()
+    {
+        speaker.PlayOneShot(AudioManager.instance.impact);
     }
 
     private void FixedUpdate()
@@ -120,6 +131,7 @@ public class PlayerController : MonoBehaviour
             rb.velocity += new Vector2(0f, 1f) * jumpHeight;
             animator.SetBool("Grounded", false);
             coyoteTimer = 0;
+            speaker.PlayOneShot(AudioManager.instance.jump);
         }
         wasMoving = moving;
 

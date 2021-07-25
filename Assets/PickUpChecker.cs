@@ -11,8 +11,8 @@ public class PickUpChecker : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        if (PlayerState.canMovePlatforms && enablesPlatformControl) gameObject.SetActive(false);
-        if (PlayerState.canSpiderMan && enablesSpiderManControl) gameObject.SetActive(false);
+        if (PlayerState.canMovePlatforms && enablesPlatformControl) gameObject.transform.parent.gameObject.SetActive(false);
+        if (PlayerState.canSpiderMan && enablesSpiderManControl) gameObject.transform.parent.gameObject.gameObject.SetActive(false);
     }
     void OnTriggerEnter2D(Collider2D collider)
     {
@@ -22,7 +22,7 @@ public class PickUpChecker : MonoBehaviour
             if (enablesPlatformControl)
             {
                 collider.GetComponentInParent<PlayerState>().ActivateCanMovePlatform();
-
+                
             }
 
             if (enablesSpiderManControl)
@@ -30,7 +30,7 @@ public class PickUpChecker : MonoBehaviour
                 collider.GetComponentInParent<PlayerState>().ActivateCanSpiderMan();
             }
 
-            Destroy(gameObject);
+            Destroy(gameObject.transform.parent.gameObject);
         }
 
     }
