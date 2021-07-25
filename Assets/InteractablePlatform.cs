@@ -24,12 +24,12 @@ public class InteractablePlatform : MonoBehaviour
         {
             if (horizontalMovment == true)
             {
-                transform.position = new Vector2(transform.position.x + Input.GetAxisRaw("Horizontal")*speed*Time.deltaTime, transform.position.y);
+                transform.position = new Vector2(Mathf.Clamp(transform.position.x + Input.GetAxisRaw("Horizontal")*speed*Time.deltaTime, -15, 15), transform.position.y);
             }
 
             if (verticalMovement == true)
             {
-                transform.position = new Vector2(transform.position.x, transform.position.y + Input.GetAxisRaw("Vertical") * speed * Time.deltaTime);
+                transform.position = new Vector2(transform.position.x, Mathf.Clamp(transform.position.y + Input.GetAxisRaw("Vertical") * speed * Time.deltaTime, -15, 15));
             }
 
         }

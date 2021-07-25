@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     private float moveInput;
 
     public bool isPlayerControlling = true;
+    public ParticleSystem landingParticleSystem;
 
     // Start is called before the first frame update
     void Start()
@@ -80,6 +81,7 @@ public class PlayerController : MonoBehaviour
         if(onGround == true && wasGrounded == false)
         {
             animator.SetBool("Grounded", true);
+            landingParticleSystem.Play();
         }
         if (onGround == false && wasGrounded == true)
         {
