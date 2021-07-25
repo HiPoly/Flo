@@ -6,16 +6,27 @@ public class PickUpChecker : MonoBehaviour
 {
 
     public bool enablesPlatformControl = false;
+    public bool enablesSpiderManControl = false;
 
     // Start is called before the first frame update
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.tag == "Player")
         {
-            print("Item picked up");
-            collider.GetComponentInParent<PlayerState>().ActivateCanMovePlatform();
+
+            if (enablesPlatformControl)
+            {
+                collider.GetComponentInParent<PlayerState>().ActivateCanMovePlatform();
+
+            }
+
+            if (enablesSpiderManControl)
+            {
+                collider.GetComponentInParent<PlayerState>().ActivateCanSpiderMan();
+            }
+
             Destroy(gameObject);
-            
         }
+
     }
 }

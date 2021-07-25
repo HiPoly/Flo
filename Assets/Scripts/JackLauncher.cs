@@ -10,10 +10,12 @@ public class JackLauncher : MonoBehaviour
     public float power;
     public Jack deployedJack { get; set; }
     public float restrainedLength { get; set; }
+    PlayerState playerState;
 
     // Start is called before the first frame update
     void Start()
     {
+        playerState = FindObjectOfType<PlayerState>();
     }
 
     // Update is called once per frame
@@ -61,14 +63,19 @@ public class JackLauncher : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            if (deployedJack)
+
+            if (playerState.canSpiderMan)
             {
-                deployedJack.DetachJack();
+                if (deployedJack)
+                {
+                    deployedJack.DetachJack();
+                }
+                else
+                {
+                    LaunchJack();
+                }
             }
-            else
-            {
-                LaunchJack();
-            }
+            
         }
     }
 
