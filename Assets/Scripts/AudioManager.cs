@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip _lock;
     public AudioClip _unlock;
     public AudioClip zap;
+    public AudioClip impact;
 
     private void Awake()
     {

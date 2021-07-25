@@ -59,8 +59,17 @@ public class PlayerController : MonoBehaviour
         {
             CharacterPrimaryControl();
         }
-        if (onGround) coyoteTimer = coyoteFrames;
+        if (onGround)
+        {
+            if (coyoteTimer == 0 && rb.velocity.y < 0f) GroundImpact();
+            coyoteTimer = coyoteFrames;
+        }
         else if (coyoteTimer != 0) coyoteTimer--;
+    }
+
+    private void GroundImpact()
+    {
+        speaker.PlayOneShot(AudioManager.instance.impact);
     }
 
     private void FixedUpdate()
