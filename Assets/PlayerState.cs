@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerState : MonoBehaviour
 {
-    public bool canMovePlatforms = false;
-    public bool canSpiderMan = false;
+    static public bool canMovePlatforms = false;
+    static public bool canSpiderMan = false;
 
     // Start is called before the first frame update
     void Start()
@@ -33,8 +34,7 @@ public class PlayerState : MonoBehaviour
     }
     public void Die()
     {
-
-        transform.position = new Vector2(0,0);
-
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //transform.position = new Vector2(0,0);
     }
 }

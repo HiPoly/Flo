@@ -45,7 +45,7 @@ public class Interactable : MonoBehaviour
     {
         if (collider.transform.CompareTag("Player"))
         {
-            if (collider.GetComponentInParent<PlayerState>().canMovePlatforms)
+            if (PlayerState.canMovePlatforms)
             {
 
                 isPlayerTouchingInteractable = true;
