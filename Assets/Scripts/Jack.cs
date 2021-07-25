@@ -61,18 +61,21 @@ public class Jack : MonoBehaviour
         transform.position += new Vector3(0f, 0f, 0.03f);
         transform.rotation = jackAttach.attachPoint.rotation;
         launcher.restrainedLength = (launcher.transform.position - jackAttach.attachPoint.position).magnitude;
+        launcher.GetComponent<PlayerController>().speaker.PlayOneShot(AudioManager.instance._lock);
     }
 
     public void DetachJack()
     {
         launcher.deployedJack = null;
         attached = null;
+        launcher.GetComponent<PlayerController>().speaker.PlayOneShot(AudioManager.instance._unlock);
         Destroy(this.gameObject, 0f);
     }
 
     public void MissedTargets()
     {
         launcher.deployedJack = null;
+        launcher.GetComponent<PlayerController>().speaker.PlayOneShot(AudioManager.instance.zap);
         Destroy(this.gameObject, 0f);
     }
 
