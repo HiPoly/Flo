@@ -23,14 +23,14 @@ public class PlayerState : MonoBehaviour
     public void ActivateCanMovePlatform()
     {
         canMovePlatforms = true;
-
+        GetComponent<PlayerController>().speaker.PlayOneShot(AudioManager.instance.upgrade);
     }
     
     public void ActivateCanSpiderMan()
     {
 
         canSpiderMan = true;
-
+        GetComponent<PlayerController>().speaker.PlayOneShot(AudioManager.instance.upgrade);
     }
     public void Die()
     {

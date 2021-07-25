@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     public bool JackLauncherModule;
     public bool redToothModule;
 
-    private AudioSource speaker;
+    public AudioSource speaker { get; set; }
     private Rigidbody2D rb;
     private bool onGround;
     private bool moving;

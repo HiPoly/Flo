@@ -6,6 +6,11 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
     public AudioClip jump;
+    public AudioClip grab;
+    public AudioClip upgrade;
+    public AudioClip _lock;
+    public AudioClip _unlock;
+    public AudioClip zap;
 
     private void Awake()
     {
