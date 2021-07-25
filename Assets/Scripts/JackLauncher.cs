@@ -22,6 +22,10 @@ public class JackLauncher : MonoBehaviour
     void Update()
     {
         PrimaryJackControls();
+    }
+
+    private void FixedUpdate()
+    {
         if (deployedJack)
         {
             maintainJack();
@@ -32,8 +36,11 @@ public class JackLauncher : MonoBehaviour
     {
         if (deployedJack.cord != null)
         {
-            Vector3[] positions = { deployedJack.cordAttach.position, transform.position };
-            deployedJack.cord.SetPositions(positions);
+            {
+                deployedJack.cord.positionCount = 2;
+                Vector3[] positions = { deployedJack.cordAttach.position, transform.position };
+                deployedJack.cord.SetPositions(positions);
+            }
         }
         if (deployedJack.attached)
         {
@@ -48,7 +55,7 @@ public class JackLauncher : MonoBehaviour
         if (cordVec.magnitude > restrainedLength)
         {
             float amount = cordVec.magnitude - restrainedLength;
-            GetComponent<Rigidbody2D>().velocity += (Vector2)cordVec * amount * Time.deltaTime;
+            GetComponent<Rigidbody2D>().velocity += (Vector2)cordVec.normalized * amount;
         }
     }
 
