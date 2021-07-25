@@ -12,6 +12,7 @@ public class Jack : MonoBehaviour
     public JackAttach attached { get; set; }
     public Transform cordAttach;
 
+
     public LineRenderer cord { get; set; }
 
     // Start is called before the first frame update
