@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
     public bool redToothModule;
 
     private Rigidbody2D rb;
-    private PlayerInteraction interaction;
     private bool onGround;
     private bool moving;
     private int coyoteTimer;
@@ -35,7 +34,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        interaction = GetComponent<PlayerInteraction>();
         animator = GetComponentInChildren<Animator>();
         sprite = GetComponentInChildren<SpriteRenderer>();
         onGround = false;

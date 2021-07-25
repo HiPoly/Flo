@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8618255322532756581}
   - component: {fileID: 8618255322532756587}
   - component: {fileID: 8618255322532756586}
-  - component: {fileID: 8618255322532756585}
   - component: {fileID: 8618255322532756580}
   - component: {fileID: 8933066107279072286}
   m_Layer: 0
@@ -74,23 +73,12 @@ MonoBehaviour:
   arialControl: 0.3
   drag: 0.2
   jumpHeight: 9
+  coyoteFrames: 0
   footDepth: 0.6
   USBModule: 0
   JackLauncherModule: 0
   redToothModule: 0
   isPlayerControlling: 1
---- !u!114 &8618255322532756585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8618255322532756584}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68db59c8f3e13e8469e0a7eb09d3d483, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8618255322532756580
 MonoBehaviour:
   m_ObjectHideFlags: 0

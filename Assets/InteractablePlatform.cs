@@ -18,18 +18,18 @@ public class InteractablePlatform : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (isPlayerControlling == true)
         {
             if (horizontalMovment == true)
             {
-                transform.position = new Vector2(transform.position.x + Input.GetAxisRaw("Horizontal")*speed*Time.deltaTime, transform.position.y);
+                transform.position = new Vector2(transform.position.x + Input.GetAxisRaw("Horizontal")*speed*Time.fixedDeltaTime, transform.position.y);
             }
 
             if (verticalMovement == true)
             {
-                transform.position = new Vector2(transform.position.x, transform.position.y + Input.GetAxisRaw("Vertical") * speed * Time.deltaTime);
+                transform.position = new Vector2(transform.position.x, transform.position.y + Input.GetAxisRaw("Vertical") * speed * Time.fixedDeltaTime);
             }
 
         }
