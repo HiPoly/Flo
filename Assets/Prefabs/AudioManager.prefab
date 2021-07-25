@@ -49,3 +49,4 @@ MonoBehaviour:
   _lock: {fileID: 8300000, guid: 53c3523bdcfb23c4b8fc739ea556b007, type: 3}
   _unlock: {fileID: 8300000, guid: d015e67165081b9438d75f11a2fd3316, type: 3}
   zap: {fileID: 8300000, guid: 309853c09e591d142974ee7a0cad9f65, type: 3}
+  impact: {fileID: 8300000, guid: c7048cc25c972d94e982684498552db8, type: 3}
