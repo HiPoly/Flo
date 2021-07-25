@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public float arialControl;
     public float drag;
     public float jumpHeight;
+    public int coyoteFrames;
     public float footDepth;
 
     public bool USBModule;
@@ -17,9 +18,9 @@ public class PlayerController : MonoBehaviour
     public bool redToothModule;
 
     private Rigidbody2D rb;
-    private PlayerInteraction interaction;
     private bool onGround;
     private bool moving;
+    private int coyoteTimer;
     bool wasGrounded;
     bool wasMoving;
     private RaycastHit2D footRay;
@@ -34,7 +35,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        interaction = GetComponent<PlayerInteraction>();
         animator = GetComponentInChildren<Animator>();
         sprite = GetComponentInChildren<SpriteRenderer>();
         onGround = false;
@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
         JackLauncherModule = false;
         redToothModule = false;
         wasGrounded = false;
+        coyoteTimer = 0;
     }
 
     // Update is called once per frame
@@ -56,6 +57,8 @@ public class PlayerController : MonoBehaviour
         {
             CharacterPrimaryControl();
         }
+        if (onGround) coyoteTimer = coyoteFrames;
+        else if (coyoteTimer != 0) coyoteTimer--;
     }
 
     private void FixedUpdate()
@@ -112,10 +115,11 @@ public class PlayerController : MonoBehaviour
 
         animator.SetFloat("MoveInput", Mathf.Abs(move));
 
-        if (onGround && jump)
+        if (jump && (onGround || coyoteTimer != 0))
         {
             rb.velocity += new Vector2(0f, 1f) * jumpHeight;
             animator.SetBool("Grounded", false);
+            coyoteTimer = 0;
         }
         wasMoving = moving;
 
