@@ -22,7 +22,7 @@ public class PickUpChecker : MonoBehaviour
             if (enablesPlatformControl)
             {
                 collider.GetComponentInParent<PlayerState>().ActivateCanMovePlatform();
-
+                
             }
 
             if (enablesSpiderManControl)
