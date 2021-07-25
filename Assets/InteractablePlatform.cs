@@ -10,26 +10,31 @@ public class InteractablePlatform : MonoBehaviour
     public bool verticalMovement = false;
     public bool isPlayerOnPlatform = false;
     public float speed = 1.0f;
+    public float clampBackwards;
+    public float clampForwards;
+
+    private Vector3 initialPosition;
 
     // Start is called before the first frame update
     void Start()
     {
         player = FindObjectOfType<PlayerController>();
+        initialPosition = transform.position;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (isPlayerControlling == true)
         {
             if (horizontalMovment == true)
             {
-                transform.position = new Vector2(Mathf.Clamp(transform.position.x + Input.GetAxisRaw("Horizontal")*speed*Time.deltaTime, -15, 15), transform.position.y);
+                transform.position = new Vector2(Mathf.Clamp(transform.position.x + Input.GetAxisRaw("Horizontal")*speed*Time.fixedDeltaTime, initialPosition.x-clampBackwards, initialPosition.x+clampForwards), transform.position.y);
             }
 
             if (verticalMovement == true)
             {
-                transform.position = new Vector2(transform.position.x, Mathf.Clamp(transform.position.y + Input.GetAxisRaw("Vertical") * speed * Time.deltaTime, -15, 15));
+                transform.position = new Vector2(transform.position.x, Mathf.Clamp(transform.position.y + Input.GetAxisRaw("Vertical") * speed * Time.fixedDeltaTime, initialPosition.y-clampBackwards, initialPosition.y+clampForwards));
             }
 
         }

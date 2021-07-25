@@ -64,7 +64,7 @@ public class JackLauncher : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
 
-            if (playerState.canSpiderMan)
+            if (PlayerState.canSpiderMan)
             {
                 if (deployedJack)
                 {
