@@ -4724,7 +4724,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8618255322532756586, guid: 5e787d4a7ae8edc4c81360732063f719, type: 3}
       propertyPath: coyoteFrames
-      value: 60
+      value: 110
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e787d4a7ae8edc4c81360732063f719, type: 3}
