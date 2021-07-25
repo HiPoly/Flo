@@ -13,6 +13,7 @@ public class InteractablePlatform : MonoBehaviour
     public float clampBackwards;
     public float clampForwards;
 
+    private AudioSource speaker;
     private Vector3 initialPosition;
 
     // Start is called before the first frame update
@@ -20,6 +21,7 @@ public class InteractablePlatform : MonoBehaviour
     {
         player = FindObjectOfType<PlayerController>();
         initialPosition = transform.position;
+        speaker = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -30,11 +32,15 @@ public class InteractablePlatform : MonoBehaviour
             if (horizontalMovment == true)
             {
                 transform.position = new Vector2(Mathf.Clamp(transform.position.x + Input.GetAxisRaw("Horizontal")*speed*Time.fixedDeltaTime, initialPosition.x-clampBackwards, initialPosition.x+clampForwards), transform.position.y);
+                if (Input.GetAxisRaw("Horizontal") != 0) speaker.Play();
+                else speaker.Stop();
             }
 
             if (verticalMovement == true)
             {
                 transform.position = new Vector2(transform.position.x, Mathf.Clamp(transform.position.y + Input.GetAxisRaw("Vertical") * speed * Time.fixedDeltaTime, initialPosition.y-clampBackwards, initialPosition.y+clampForwards));
+                if (Input.GetAxisRaw("Vertical") != 0) speaker.Play();
+                else speaker.Stop();
             }
 
         }
